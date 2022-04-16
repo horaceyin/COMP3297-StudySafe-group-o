@@ -1,11 +1,5 @@
 # from rest_framework import serializers
-
-# class MembersSerializer(serializers.Serializer):
-#     #id = serializers.IntegerField(read_only = True)
-#     HKUID = serializers.CharField(max_length=10, read_only = True)
-#     name = serializers.CharField(max_length=150)
-
-from StudySafeCore.models import Venue
+from StudySafeCore.models import *
 from rest_framework import serializers
 
 # class VenueSerialization(serializers.Serializer):
@@ -18,4 +12,9 @@ class VenueSerialization(serializers.ModelSerializer):
 
   class Meta:
     model = Venue
+    fields = '__all__'
+
+class MemberSerialization(serializers.ModelSerializer):
+  class Meta:
+    model = HKUMember
     fields = '__all__'
