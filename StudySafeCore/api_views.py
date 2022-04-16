@@ -1,9 +1,10 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics
+
 from rest_framework import viewsets
-from .models import Venue
-from .serializers import VenueSerialization
+from .models import *
+from .serializers import *
 
 # @api_view(['GET',])
 # def list_all_venues(request):
@@ -27,3 +28,7 @@ class VenueViewSet(viewsets.ModelViewSet):
   #   # venue = get_object_or_404(queryset, pk=pk)
   #   serializer = VenueSerialization(queryset)
   #   return Response(serializer.data)
+
+class MemberViewSet(viewsets.ModelViewSet):
+  queryset = HKUMember.objects.all()
+  serializer_class = MemberSerialization
