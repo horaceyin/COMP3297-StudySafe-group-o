@@ -18,3 +18,8 @@ class MemberSerialization(serializers.ModelSerializer):
   class Meta:
     model = HKUMember
     fields = '__all__'
+
+class VenueEntryExitRecordSerialization(serializers.ModelSerializer):
+  class Meta:
+    model = VenueEntryExitRecord
+    fields = '__all__'

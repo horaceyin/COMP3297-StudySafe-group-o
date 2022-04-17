@@ -1,3 +1,4 @@
+import email
 from django.db import models
 
 # Create your models here.
@@ -24,3 +25,13 @@ class VenueEntryExitRecord(models.Model):
   hkuMember = models.ForeignKey(HKUMember, on_delete=models.CASCADE)
   def __str__(self):
     return f'{self.hkuMember.HKUID} {self.venue.venueCode} ({self.entryDatetime})'
+
+# class TaskForceMember(models.Model):
+#   username = models.CharField(max_length=100, primary_key=True)
+#   password = models.CharField(max_length=100, primary_key=True)
+#   firstname = models.CharField(max_length=100, primary_key=True)
+#   lastname = models.CharField(max_length=100, primary_key=True)
+#   email = models.CharField(max_length=100, primary_key=True)
+
+#   def __str__(self):
+#     return f'Username: {self.username}, Password: {self.password}, First Name: {self.firstname}, Last Name: {self.lastname}, Email:{self.email}'

@@ -10,6 +10,7 @@ router = DefaultRouter()
 # router.register(r'venues/<str:pk>', VenueViewSet, 'venue')
 router.register(r'venues', VenueViewSet, 'venue')
 router.register(r'hku-members', MemberViewSet)
+router.register(r'entry-exit-records', EntryExitRecordViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),

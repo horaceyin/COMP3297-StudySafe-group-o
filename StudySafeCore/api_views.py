@@ -32,3 +32,7 @@ class VenueViewSet(viewsets.ModelViewSet):
 class MemberViewSet(viewsets.ModelViewSet):
   queryset = HKUMember.objects.all()
   serializer_class = MemberSerialization
+
+class EntryExitRecordViewSet(viewsets.ModelViewSet):
+  queryset = VenueEntryExitRecord.objects.all()
+  serializer_class = VenueEntryExitRecordSerialization
