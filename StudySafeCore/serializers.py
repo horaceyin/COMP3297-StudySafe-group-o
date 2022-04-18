@@ -23,3 +23,8 @@ class VenueEntryExitRecordSerialization(serializers.ModelSerializer):
   class Meta:
     model = VenueEntryExitRecord
     fields = '__all__'
+
+class VenueCodeOnlyVenueEntryExitRecordSerialization(serializers.ModelSerializer):
+  class Meta:
+    model = VenueEntryExitRecord
+    fields = ['venue']
