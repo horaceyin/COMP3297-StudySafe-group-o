@@ -11,6 +11,7 @@ pytz = "==2022.1"
 sqlparse = "==0.4.2"
 Django = "==4.0.4"
 PyYAML = "*"
+gunicorn = "*"
 
 [dev-packages]
 

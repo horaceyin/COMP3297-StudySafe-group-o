@@ -68,7 +68,7 @@ class EntryExitRecordViewSet(viewsets.ModelViewSet):
     records = VenueEntryExitRecord.objects.filter(
         hkuMember = HKUMember.objects.get(HKUID=hkuid),
         entryDatetime__range=[
-          datetime.strptime(date, "%Y-%m-%d%z") - timedelta(days=3), datetime.strptime(date, "%Y-%m-%d%z")],
+          datetime.strptime(date, "%Y-%m-%d%z") - timedelta(days=2), datetime.strptime(date, "%Y-%m-%d%z")],
           duration__gte = timedelta(minutes=30))
     
     for record in records:
@@ -120,7 +120,7 @@ class EntryExitRecordViewSet(viewsets.ModelViewSet):
     record = VenueEntryExitRecord.objects.filter(
         hkuMember = HKUMember.objects.get(HKUID=hkuid),
         entryDatetime__range=[
-          datetime.strptime(date, "%Y-%m-%d%z") - timedelta(days=3), datetime.strptime(date, "%Y-%m-%d%z")])
+          datetime.strptime(date, "%Y-%m-%d%z") - timedelta(days=2), datetime.strptime(date, "%Y-%m-%d%z")])
 
     venue_serializer = VenueCodeOnlyVenueEntryExitRecordSerialization(record, many=True)
     return Response(venue_serializer.data)

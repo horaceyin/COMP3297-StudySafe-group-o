@@ -371,7 +371,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VenueEntryExitRecordSerialization'
+                type: array
+                items:
+                  type: object
+                  properties:
+                    HKUID:
+                      type: string
+                      maxLength: 10
+                    name:
+                      type: string
+                      maxLength: 150
           description: ''
       tags:
       - api
@@ -397,7 +406,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VenueEntryExitRecordSerialization'
+                type: array
+                items:
+                  type: object
+                  properties:
+                    venueCode:
+                      type: string
+                      maxLength: 20
           description: ''
       tags:
       - api
