@@ -14,8 +14,6 @@ router.register(r'entry-exit-records', VenueEntryExitRecordViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('api/exit/',ExitRecordView.as_view()),
-    path('api/entry/',EntryRecordView.as_view())
 ]
 
 # urlpatterns = [
