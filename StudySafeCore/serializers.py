@@ -28,11 +28,6 @@ class VenueEntryExitRecordSerialization(serializers.Serializer):
         model = VenueEntryExitRecord
         fields = "__all__"
 
-
-class VenueCodeOnlyVenueEntryExitRecordSerialization(serializers.ModelSerializer):
-    class Meta:
-        model = VenueEntryExitRecord
-
 class EntryRecordSerialization(serializers.ModelSerializer):
     #use default implementation for create
     class Meta:
@@ -53,7 +48,7 @@ class EntryRecordSerialization(serializers.ModelSerializer):
                 "Invalid record! The system our accepts ENTRY records within 2 minutes of the current time")
         return data
     
-class ExitSerialization(serializers.ModelSerializer):
+class ExitRecordSerialization(serializers.ModelSerializer):
     class Meta:
         model = VenueEntryExitRecord
         fields = ['hkuMember', 'venue','exitDatetime']
@@ -78,3 +73,17 @@ class ExitSerialization(serializers.ModelSerializer):
             print("FUCK")
             raise serializers.ValidationError("Invalid record! The system our accepts EXIT records within 2 minutes of the current time")
         return data
+    
+    def update(self, instance, validated_data): 
+        instance.exitDatetime = validated_data.get('exitDatetime', instance.exitDatetime)
+        instance.duration = validated_data["exitDatetime"] - instance.entryDatetime
+        instance.save()
+        return instance
+
+class GetVisitedVenuesSerialization(serializers.Serializer):
+    dateDiagnosis = serializers.DateField()
+    hkuMember = serializers.CharField(max_length=10)
+
+class GetCloseContactsSerialization(serializers.Serializer):
+    dateDiagnosis = serializers.DateField()
+    hkuMember = serializers.CharField(max_length=10)

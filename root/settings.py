@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'StudySafeCore.apps.StudysafecoreConfig',
-    'StudySafeTrace.apps.StudysafetraceConfig',
     'rest_framework'
 ]
 
@@ -115,7 +114,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

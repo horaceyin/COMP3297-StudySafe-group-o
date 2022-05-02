@@ -15,13 +15,7 @@ router.register(r'entry-exit-records', VenueEntryExitRecordViewSet)
 urlpatterns = [
     path('api/', include(router.urls)),
     path('api/exit/',ExitRecordView.as_view()),
-    path('api/entry/',EntryRecordView.as_view())
+    path('api/entry/',EntryRecordView.as_view()),
+    path('api/getVisitedVenues/',GetVisitedVenuesView.as_view()),
+    path('api/getCloseContacts/',GetCloseContactsView.as_view())
 ]
-
-# urlpatterns = [
-#     # path('api/venues/create', services.VenuesCreate),
-#     # path('api/venues/list-all', list_all_venues.as_view(), name='all_venues'),
-#     # path('api/contacts/', services.Contacts),
-#     # # above for testing
-#     # path('api/members/all', services.MembersListAll),
-# ]

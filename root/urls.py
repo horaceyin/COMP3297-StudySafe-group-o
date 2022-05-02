@@ -19,5 +19,4 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('StudySafeCore.urls')),
     path('admin/', admin.site.urls),
-    path('study-safe-trace/', include('StudySafeTrace.urls'))
 ]
