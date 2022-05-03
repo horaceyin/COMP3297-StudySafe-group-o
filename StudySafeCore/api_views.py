@@ -4,7 +4,7 @@ from modulefinder import ReplacePackage
 from sre_constants import SUCCESS
 
 from django.http import Http404
-from itsdangerous import Serializer
+# from itsdangerous import Serializer
 from itertools import chain
 from django.conf import settings
 
