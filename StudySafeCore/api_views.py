@@ -92,7 +92,8 @@ class GetVisitedVenuesView(generics.GenericAPIView):
             
             #use list->dict->list to remove duplicates
             visitedVenuesCode = list(set([i.venue.venueCode for i in queryResult]))
-
+            visitedVenuesCode.sort()
+            
             response = {}
             response["visited venues"] = []
             for v in visitedVenuesCode:
@@ -119,28 +120,43 @@ class GetCloseContactsView(generics.GenericAPIView):
             hkuMember=HKUMember.objects.get(HKUID=request_serializer.validated_data["hkuMember"]),duration__gte=timedelta(minutes=30),
             entryDatetime__range=[dateDiagnosis - timedelta(days=2), dateDiagnosis])
 
-            
             closeContactsUID = set()
             for r in patient_visit_records:
-                # print(r)
                 #cat 1, contact enters before patient enters, contact exit after patient enters but before patient exit
-                contactEntryTime = r.entryDatetime + timedelta(minutes=30)
-                print(contactEntryTime)
-                close_contacts = VenueEntryExitRecord.objects.filter(venue=r.venue,entryDatetime__lte=r.entryDatetime,exitDatetime__gte=contactEntryTime).exclude(duration=None)
+                contactExitTime = r.entryDatetime + timedelta(minutes=30)
+                close_contacts_1 = VenueEntryExitRecord.objects.filter(venue=r.venue,
+                entryDatetime__lte=r.entryDatetime,
+                exitDatetime__lte=r.exitDatetime,
+                exitDatetime__gte=contactExitTime).exclude(duration=None)
                 #cat 2, contacts enters after patient enters, contact exit before patient exit
-                close_contacts = close_contacts | VenueEntryExitRecord.objects.filter(venue=r.venue,entryDatetime__gte=r.entryDatetime,exitDatetime__lte=r.exitDatetime,duration__gte=timedelta(minutes=30)).exclude(duration=None)
+                close_contacts_2 = VenueEntryExitRecord.objects.filter(venue=r.venue,
+                entryDatetime__gte=r.entryDatetime,
+                exitDatetime__lte=r.exitDatetime,
+                duration__gte=timedelta(minutes=30)).exclude(duration=None)
                 #cat 3, contacts enters before patient exit, contact exit after patient exit
                 contactEntryTime = r.exitDatetime - timedelta(minutes=30)
-                close_contacts = close_contacts | VenueEntryExitRecord.objects.filter(venue=r.venue,entryDatetime__lte=contactEntryTime,exitDatetime__gte=r.exitDatetime).exclude(duration=None)
+                close_contacts_3 = VenueEntryExitRecord.objects.filter(venue=r.venue,
+                exitDatetime__gte=r.exitDatetime,
+                entryDatetime__gte=r.entryDatetime,
+                entryDatetime__lte=contactEntryTime).exclude(duration=None)
                 #cat 4, contacts enters before patient enters, contact exit after patient exit
-                close_contacts = close_contacts | VenueEntryExitRecord.objects.filter(venue=r.venue,entryDatetime__lte=r.entryDatetime,exitDatetime__lte=r.exitDatetime,duration__gte=timedelta(minutes=30)).exclude(duration=None)
-
-                # print(close_contacts)
+                close_contacts_4 = VenueEntryExitRecord.objects.filter(venue=r.venue,
+                entryDatetime__lte=r.entryDatetime,
+                exitDatetime__gte=r.exitDatetime,
+                duration__gte=timedelta(minutes=30)).exclude(duration=None)
                 
+                # print(f'1: {close_contacts_1}')
+                # print(f'2: {close_contacts_2}')
+                # print(f'3: {close_contacts_3}')
+                # print(f'4: {close_contacts_4}')
+
+                close_contacts = close_contacts_1 | close_contacts_2 |close_contacts_3 |close_contacts_4
                 for cR in close_contacts:
                     closeContactsUID.add(cR.hkuMember.HKUID)
             if request_serializer.validated_data["hkuMember"] in closeContactsUID:
                 closeContactsUID.remove(request_serializer.validated_data["hkuMember"])
+            closeContactsUID = list(closeContactsUID)
+            closeContactsUID.sort()
             response = {}
             response["close contacts"] = []
             for c in closeContactsUID:

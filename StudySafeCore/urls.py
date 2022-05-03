@@ -16,6 +16,6 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/exit/',ExitRecordView.as_view()),
     path('api/entry/',EntryRecordView.as_view()),
-    path('api/getVisitedVenues/',GetVisitedVenuesView.as_view()),
-    path('api/getCloseContacts/',GetCloseContactsView.as_view())
+    path('api/visitedVenues/',GetVisitedVenuesView.as_view()),
+    path('api/closeContacts/',GetCloseContactsView.as_view())
 ]
