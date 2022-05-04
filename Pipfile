@@ -9,11 +9,12 @@ uritemplate = "*"
 asgiref = "==3.5.0"
 pytz = "==2022.1"
 sqlparse = "==0.4.2"
-Django = "==4.0.4"
+Django = "~=4.0"
 PyYAML = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 heroku = "*"
+environs = {extras = ["django"], version = "*"}
 
 [dev-packages]
 

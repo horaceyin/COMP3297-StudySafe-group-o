@@ -5,7 +5,7 @@
 
 from django.http import Http404
 # from itsdangerous import Serializer
-# from itertools import chain
+from itertools import chain
 from django.conf import settings
 
 from rest_framework.decorators import api_view, action

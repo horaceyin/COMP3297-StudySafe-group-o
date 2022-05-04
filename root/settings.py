@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from environs import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,10 +23,12 @@ TEMPLATE_PATH = os.path.join(BASE_DIR) + '/StudySafeTrace'
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tr0eug!0+3szq+waf077$%hct4&7k6sjx&e^s-@j0fax!^a70z'
+# SECRET_KEY = 'django-insecure-tr0eug!0+3szq+waf077$%hct4&7k6sjx&e^s-@j0fax!^a70z'
+SECRET_KEY = Env.str('QDD_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = Env.str('QDD_DEBUG', default=False)
 
 ALLOWED_HOSTS = ['desolate-ridge-04296.herokuapp.com',
                  'localhost', '127.0.0.1']
