@@ -35,17 +35,15 @@ class EntryRecordSerialization(serializers.ModelSerializer):
         fields = ["hkuMember","venue","entryDatetime"]
 
     def validate(self, data):
-        # check if the entry time is reasonably current
-        currentTime = datetime.datetime.now()
-        if currentTime.replace(tzinfo=None) > data["entryDatetime"].replace(tzinfo=None):
-            timeDiff = currentTime.replace(tzinfo=None) - data["entryDatetime"].replace(tzinfo=None)
-        else:
-            timeDiff = data["entryDatetime"].replace(tzinfo=None) - currentTime.replace(tzinfo=None)
-        # print(timeDiff)
-        # print(timeDiff.seconds // 60)
-        if abs(timeDiff.seconds // 60) > 2:
-            raise serializers.ValidationError(
-                "Invalid record! The system our accepts ENTRY records within 2 minutes of the current time")
+        # # check if the entry time is reasonably current
+        # currentTime = datetime.datetime.now()
+        # if currentTime.replace(tzinfo=None) > data["entryDatetime"].replace(tzinfo=None):
+        #     timeDiff = currentTime.replace(tzinfo=None) - data["entryDatetime"].replace(tzinfo=None)
+        # else:
+        #     timeDiff = data["entryDatetime"].replace(tzinfo=None) - currentTime.replace(tzinfo=None)
+        # if abs(timeDiff.seconds // 60) > 2:
+        #     raise serializers.ValidationError(
+        #         "Invalid record! The system our accepts ENTRY records within 2 minutes of the current time")
         return data
     
 class ExitRecordSerialization(serializers.ModelSerializer):
@@ -64,14 +62,13 @@ class ExitRecordSerialization(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 "The exit time is earlier than entry time!")
         # check if the exit time is reasonably current
-        currentTime = datetime.datetime.now()
-        if currentTime.replace(tzinfo=None) > data["exitDatetime"].replace(tzinfo=None):
-            timeDiff = currentTime.replace(tzinfo=None) - data["exitDatetime"].replace(tzinfo=None)
-        else:
-            timeDiff = data["exitDatetime"].replace(tzinfo=None) - currentTime.replace(tzinfo=None)
-        if abs(timeDiff.seconds // 60) > 2:
-            print("FUCK")
-            raise serializers.ValidationError("Invalid record! The system our accepts EXIT records within 2 minutes of the current time")
+        # currentTime = datetime.datetime.now()
+        # if currentTime.replace(tzinfo=None) > data["exitDatetime"].replace(tzinfo=None):
+        #     timeDiff = currentTime.replace(tzinfo=None) - data["exitDatetime"].replace(tzinfo=None)
+        # else:
+        #     timeDiff = data["exitDatetime"].replace(tzinfo=None) - currentTime.replace(tzinfo=None)
+        # if abs(timeDiff.seconds // 60) > 2:
+        #     raise serializers.ValidationError("Invalid record! The system our accepts EXIT records within 2 minutes of the current time")
         return data
     
     def update(self, instance, validated_data): 
