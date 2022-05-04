@@ -24,11 +24,11 @@ TEMPLATE_PATH = os.path.join(BASE_DIR) + '/StudySafeTrace'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-tr0eug!0+3szq+waf077$%hct4&7k6sjx&e^s-@j0fax!^a70z'
-SECRET_KEY = env.str('QDD_SECRET_KEY')
+SECRET_KEY = Env.str('QDD_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = env.str('QDD_DEBUG', default=False)
+DEBUG = Env.str('QDD_DEBUG', default=False)
 
 ALLOWED_HOSTS = ['desolate-ridge-04296.herokuapp.com',
                  'localhost', '127.0.0.1']
