@@ -89,7 +89,7 @@ class GetVisitedVenuesView(generics.GenericAPIView):
                 entryDatetime__range=[
                    dateDiagnosis - timedelta(days=3) + timedelta(minutes=1), dateDiagnosis]).exclude(duration=None)
             
-            #use list->dict->list to remove duplicates
+            #use list->set->list to remove duplicates
             visitedVenuesCode = list(set([i.venue.venueCode for i in queryResult]))
             visitedVenuesCode.sort()
             
