@@ -88,7 +88,7 @@ class GetVisitedVenuesView(generics.GenericAPIView):
             queryResult = VenueEntryExitRecord.objects.filter(
                 hkuMember=HKUMember.objects.get(HKUID=request_serializer.validated_data["hkuMember"]),
                 entryDatetime__range=[
-                   dateDiagnosis - timedelta(days=2), dateDiagnosis]).exclude(duration=None)
+                   dateDiagnosis - timedelta(days=3) + timedelta(minutes=1), dateDiagnosis]).exclude(duration=None)
             
             #use list->dict->list to remove duplicates
             visitedVenuesCode = list(set([i.venue.venueCode for i in queryResult]))
@@ -118,7 +118,7 @@ class GetCloseContactsView(generics.GenericAPIView):
             dateDiagnosis = datetime(request_serializer.validated_data["dateDiagnosis"].year, request_serializer.validated_data["dateDiagnosis"].month, request_serializer.validated_data["dateDiagnosis"].day,23,59,59);
             patient_visit_records = VenueEntryExitRecord.objects.filter(
             hkuMember=HKUMember.objects.get(HKUID=request_serializer.validated_data["hkuMember"]),duration__gte=timedelta(minutes=30),
-            entryDatetime__range=[dateDiagnosis - timedelta(days=2), dateDiagnosis])
+            entryDatetime__range=[dateDiagnosis - timedelta(days=3) + timedelta(minutes=1), dateDiagnosis])
 
             closeContactsUID = set()
             for r in patient_visit_records:

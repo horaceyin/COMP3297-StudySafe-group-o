@@ -23,10 +23,10 @@ class HKUMemberSerialization(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class VenueEntryExitRecordSerialization(serializers.Serializer):
+class VenueEntryExitRecordSerialization(serializers.ModelSerializer):
     class Meta:
         model = VenueEntryExitRecord
-        fields = "__all__"
+        fields = '__all__'
 
 class EntryRecordSerialization(serializers.ModelSerializer):
     #use default implementation for create
