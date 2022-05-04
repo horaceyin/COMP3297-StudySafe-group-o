@@ -22,7 +22,6 @@ from django.db.models import Q, F
 import json
 
 class VenueViewSet(viewsets.ModelViewSet):
-    # lookup_value_regex = '[^/]+'
     queryset = Venue.objects.all()
     serializer_class = VenueSerialization
 
