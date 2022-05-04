@@ -6,7 +6,7 @@ paths:
   /api/venues/:
     get:
       operationId: listVenues
-      description: 'List all Venues in DB'
+      description: ''
       parameters: []
       responses:
         '200':
@@ -21,7 +21,7 @@ paths:
       - api
     post:
       operationId: createVenue
-      description: 'Create a Venue record in DB'
+      description: ''
       parameters: []
       requestBody:
         content:
@@ -46,7 +46,7 @@ paths:
   /api/venues/{venueCode}/:
     get:
       operationId: retrieveVenue
-      description: 'View a Venue record with provided venueCode in URL'
+      description: ''
       parameters:
       - name: venueCode
         in: path
@@ -65,7 +65,7 @@ paths:
       - api
     put:
       operationId: updateVenue
-      description: 'Modify entire Venue record with provided venueCode in URL and record attributes in requestBody'
+      description: ''
       parameters:
       - name: venueCode
         in: path
@@ -95,7 +95,7 @@ paths:
       - api
     patch:
       operationId: partialUpdateVenue
-      description: 'Modify partial Venue record with provided venueCode in URL and record attributes in requestBody'
+      description: ''
       parameters:
       - name: venueCode
         in: path
@@ -125,7 +125,7 @@ paths:
       - api
     delete:
       operationId: destroyVenue
-      description: 'Delete a Venue record with provided venueCode in URL'
+      description: ''
       parameters:
       - name: venueCode
         in: path
@@ -141,7 +141,7 @@ paths:
   /api/hku-members/:
     get:
       operationId: listHKUMembers
-      description: 'List all HKU member in DB'
+      description: ''
       parameters: []
       responses:
         '200':
@@ -150,38 +150,38 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/MemberSerialization'
+                  $ref: '#/components/schemas/HKUMemberSerialization'
           description: ''
       tags:
       - api
     post:
       operationId: createHKUMember
-      description: 'Create a HKU member record in DB'
+      description: ''
       parameters: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MemberSerialization'
+              $ref: '#/components/schemas/HKUMemberSerialization'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/MemberSerialization'
+              $ref: '#/components/schemas/HKUMemberSerialization'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/MemberSerialization'
+              $ref: '#/components/schemas/HKUMemberSerialization'
       responses:
         '201':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MemberSerialization'
+                $ref: '#/components/schemas/HKUMemberSerialization'
           description: ''
       tags:
       - api
   /api/hku-members/{HKUID}/:
     get:
       operationId: retrieveHKUMember
-      description: 'View a HKU member record with provided HKUID in URL'
+      description: ''
       parameters:
       - name: HKUID
         in: path
@@ -194,13 +194,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MemberSerialization'
+                $ref: '#/components/schemas/HKUMemberSerialization'
           description: ''
       tags:
       - api
     put:
       operationId: updateHKUMember
-      description: 'Modify entire HKU member record with provided HKUID in URL and record attributes in requestBody'
+      description: ''
       parameters:
       - name: HKUID
         in: path
@@ -212,25 +212,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MemberSerialization'
+              $ref: '#/components/schemas/HKUMemberSerialization'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/MemberSerialization'
+              $ref: '#/components/schemas/HKUMemberSerialization'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/MemberSerialization'
+              $ref: '#/components/schemas/HKUMemberSerialization'
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MemberSerialization'
+                $ref: '#/components/schemas/HKUMemberSerialization'
           description: ''
       tags:
       - api
     patch:
       operationId: partialUpdateHKUMember
-      description: 'Modify partial HKU member record with provided HKUID in URL and record attributes in requestBody'
+      description: ''
       parameters:
       - name: HKUID
         in: path
@@ -242,25 +242,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MemberSerialization'
+              $ref: '#/components/schemas/HKUMemberSerialization'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/MemberSerialization'
+              $ref: '#/components/schemas/HKUMemberSerialization'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/MemberSerialization'
+              $ref: '#/components/schemas/HKUMemberSerialization'
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MemberSerialization'
+                $ref: '#/components/schemas/HKUMemberSerialization'
           description: ''
       tags:
       - api
     delete:
       operationId: destroyHKUMember
-      description: 'Delete a HKU member record with provided HKUID in URL'
+      description: ''
       parameters:
       - name: HKUID
         in: path
@@ -276,7 +276,7 @@ paths:
   /api/entry-exit-records/:
     get:
       operationId: listVenueEntryExitRecords
-      description: 'List all Venue Entry Exit Records in DB'
+      description: ''
       parameters: []
       responses:
         '200':
@@ -291,55 +291,19 @@ paths:
       - api
     post:
       operationId: createVenueEntryExitRecord
-      description: 'Create a Venue Entry record in DB, exitDatetime can leave it blank'
+      description: ''
       parameters: []
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                entryDatetime:
-                  type: string
-                  format: date-time
-                venue:
-                  type: string
-                hkuMember:
-                  type: string
-              required:
-              - entryDatetime
-              - venue
-              - hkuMember
+              $ref: '#/components/schemas/VenueEntryExitRecordSerialization'
           application/x-www-form-urlencoded:
             schema:
-              type: object
-              properties:
-                entryDatetime:
-                  type: string
-                  format: date-time
-                venue:
-                  type: string
-                hkuMember:
-                  type: string
-              required:
-              - entryDatetime
-              - venue
-              - hkuMember
+              $ref: '#/components/schemas/VenueEntryExitRecordSerialization'
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                entryDatetime:
-                  type: string
-                  format: date-time
-                venue:
-                  type: string
-                hkuMember:
-                  type: string
-              required:
-              - entryDatetime
-              - venue
-              - hkuMember
+              $ref: '#/components/schemas/VenueEntryExitRecordSerialization'
       responses:
         '201':
           content:
@@ -349,77 +313,10 @@ paths:
           description: ''
       tags:
       - api
-  /api/entry-exit-records/getCloseContacts/{hkuid}/{date}/:
-    get:
-      operationId: getCloseContactsVenueEntryExitRecord
-      description: 'Return the Close Contacts of the infected member given HKUID and date of diagnosis in the requestBody'
-      parameters:
-      - name: hkuid
-        in: path
-        required: true
-        description: 'HKU Member ID'
-        schema:
-          type: string
-      - name: date
-        in: path
-        required: true
-        description: 'The date of diagnosis or onset of symptoms, e.g. 2022-04-18+08:00'
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    HKUID:
-                      type: string
-                      maxLength: 10
-                    name:
-                      type: string
-                      maxLength: 150
-          description: ''
-      tags:
-      - api
-  /api/entry-exit-records/getVisitedVenues/{hkuid}/{date}/:
-    get:
-      operationId: getVisitedVenuesVenueEntryExitRecord
-      description: 'Return the Visited Venues of the infected member given HKUID and date of diagnosis in the requestBody'
-      parameters: 
-      - name: hkuid
-        in: path
-        required: true
-        description: 'HKU Member ID'
-        schema:
-          type: string
-      - name: date
-        in: path
-        required: true
-        description: 'The date of diagnosis or onset of symptoms, e.g. 2022-04-18+08:00'
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    venueCode:
-                      type: string
-                      maxLength: 20
-          description: ''
-      tags:
-      - api
   /api/entry-exit-records/{id}/:
     get:
       operationId: retrieveVenueEntryExitRecord
-      description: 'View a Venue Entry Exit record with provided id in URL'
+      description: ''
       parameters:
       - name: id
         in: path
@@ -438,7 +335,7 @@ paths:
       - api
     put:
       operationId: updateVenueEntryExitRecord
-      description: 'Modify entire Venue Entry Exit record with provided id in URL and record attributes in requestBody'
+      description: ''
       parameters:
       - name: id
         in: path
@@ -468,7 +365,7 @@ paths:
       - api
     patch:
       operationId: partialUpdateVenueEntryExitRecord
-      description: 'Modify partial Venue Entry Exit record with provided id in URL and record attributes in requestBody'
+      description: ''
       parameters:
       - name: id
         in: path
@@ -498,7 +395,7 @@ paths:
       - api
     delete:
       operationId: destroyVenueEntryExitRecord
-      description: 'Delete a Venue Entry Exit record with provided id in URL'
+      description: ''
       parameters:
       - name: id
         in: path
@@ -511,64 +408,85 @@ paths:
           description: ''
       tags:
       - api
-  /api/entry-exit-records/createExitRecord/:
+  /api/visitedVenues/:
+    get:
+      operationId: listVenueEntryExitRecords
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetVisitedVenuesSerialization'
+          description: ''
+      tags:
+      - api
+  /api/closeContacts/:
+    get:
+      operationId: listVenueEntryExitRecords
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetCloseContactsSerialization'
+          description: ''
+      tags:
+      - api
+  /api/exit/:
     post:
-      operationId: createExitRecordVenueEntryExitRecord
-      description: 'Create a Venue Exit record in DB, given the exitDatetime in the requestBody'
+      operationId: createVenueEntryExitRecord
+      description: ''
       parameters: []
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                exitDatetime:
-                  type: string
-                  format: date-time
-                venue:
-                  type: string
-                hkuMember:
-                  type: string
-              required:
-              - exitDatetime
-              - venue
-              - hkuMember
+              $ref: '#/components/schemas/ExitRecordSerialization'
           application/x-www-form-urlencoded:
             schema:
-              type: object
-              properties:
-                exitDatetime:
-                  type: string
-                  format: date-time
-                venue:
-                  type: string
-                hkuMember:
-                  type: string
-              required:
-              - exitDatetime
-              - venue
-              - hkuMember
+              $ref: '#/components/schemas/ExitRecordSerialization'
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                exitDatetime:
-                  type: string
-                  format: date-time
-                venue:
-                  type: string
-                hkuMember:
-                  type: string
-              required:
-              - exitDatetime
-              - venue
-              - hkuMember
+              $ref: '#/components/schemas/ExitRecordSerialization'
       responses:
         '201':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VenueEntryExitRecordSerialization'
+                $ref: '#/components/schemas/ExitRecordSerialization'
+          description: ''
+      tags:
+      - api
+  /api/entry/:
+    post:
+      operationId: createVenueEntryExitRecord
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntryRecordSerialization'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EntryRecordSerialization'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EntryRecordSerialization'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryRecordSerialization'
           description: ''
       tags:
       - api
@@ -584,21 +502,19 @@ components:
           type: string
           maxLength: 150
         type:
+          enum:
+          - LT
+          - CR
+          - TR
           type: string
-          maxLength: 3
         capacity:
           type: integer
-        hkuMember:
-          type: array
-          items:
-            type: string
-          readOnly: true
       required:
       - venueCode
       - location
       - type
       - capacity
-    MemberSerialization:
+    HKUMemberSerialization:
       type: object
       properties:
         HKUID:
@@ -634,3 +550,55 @@ components:
       - entryDatetime
       - venue
       - hkuMember
+    GetVisitedVenuesSerialization:
+      type: object
+      properties:
+        dateDiagnosis:
+          type: string
+          format: date
+        hkuMember:
+          type: string
+          maxLength: 10
+      required:
+      - dateDiagnosis
+      - hkuMember
+    GetCloseContactsSerialization:
+      type: object
+      properties:
+        dateDiagnosis:
+          type: string
+          format: date
+        hkuMember:
+          type: string
+          maxLength: 10
+      required:
+      - dateDiagnosis
+      - hkuMember
+    ExitRecordSerialization:
+      type: object
+      properties:
+        hkuMember:
+          type: string
+        venue:
+          type: string
+        exitDatetime:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - hkuMember
+      - venue
+    EntryRecordSerialization:
+      type: object
+      properties:
+        hkuMember:
+          type: string
+        venue:
+          type: string
+        entryDatetime:
+          type: string
+          format: date-time
+      required:
+      - hkuMember
+      - venue
+      - entryDatetime
