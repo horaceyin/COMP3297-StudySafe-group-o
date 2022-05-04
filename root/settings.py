@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-tr0eug!0+3szq+waf077$%hct4&7k6sjx&e^s-@j0fax!^a70z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['desolate-ridge-04296.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['desolate-ridge-04296.herokuapp.com',
+                 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -84,6 +85,19 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'core',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Aa123456',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+# DATABASES = {
+#     'default': env.dj_db_url('DATABASE_URL')
+# }
 
 
 # Password validation
